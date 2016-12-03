@@ -7,5 +7,64 @@
   },
   "editorTab": {
     "currentEditorMode": 0
+  },
+  "iot-tab": {
+    "fileStatus": {
+      "BusBuddyBus.xdk": {
+        "previousModTime": 1480795428000,
+        "modified": 1480795428000,
+        "seen": true,
+        "name": "BusBuddyBus.xdk"
+      },
+      "BusBuddyBus.xdke": {
+        "previousModTime": 1480803783000,
+        "modified": 1480803783000,
+        "seen": true,
+        "name": "BusBuddyBus.xdke"
+      },
+      "README.md": {
+        "previousModTime": 1480795424000,
+        "modified": 1480795424000,
+        "seen": true,
+        "name": "README.md"
+      },
+      "characteristic.js": {
+        "previousModTime": 1480795424000,
+        "modified": 1480795424000,
+        "seen": true,
+        "name": "characteristic.js"
+      },
+      "icon.png": {
+        "previousModTime": 1480795424000,
+        "modified": 1480795424000,
+        "seen": true,
+        "name": "icon.png"
+      },
+      "main.js": {
+        "previousModTime": 1480795424000,
+        "modified": 1480795424000,
+        "seen": true,
+        "name": "main.js"
+      },
+      "package.json": {
+        "previousModTime": 1480795424000,
+        "modified": 1480795424000,
+        "seen": true,
+        "name": "package.json"
+      },
+      "screenlog.0": {
+        "previousModTime": 1480800259000,
+        "modified": 1480800259000,
+        "seen": true,
+        "name": "screenlog.0"
+      },
+      "xdk/project-info.json": {
+        "previousModTime": 1480795427000,
+        "modified": 1480795427000,
+        "seen": true,
+        "name": "xdk/project-info.json"
+      }
+    },
+    "boardFileStatus": {}
   }
 }

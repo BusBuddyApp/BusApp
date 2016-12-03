@@ -1,0 +1,223 @@
+
+Poky (Yocto Project Reference Distro) 1.7.2 edison ttyMFD2
+
+edison login: root
+root@edison:~# 
+root@edison:~# cat /etc/version
+weekly-159
+root@edison:~# ifconfig
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+usb0      Link encap:Ethernet  HWaddr 02:00:86:5d:1d:89  
+          inet addr:192.168.2.15  Bcast:192.168.2.255  Mask:255.255.255.0
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+root@edison:~# configure_edison --busapp
+usage: configure_edison [-h] [[--setup | --name | --password | --wifi]
+                        [--showWiFiIP | --showWiFiMode | --version | --latest-version | --disableOneTimeSetup | --enableOneTimeSetup | --toggleOneTimeSetup | --upgrade | --flash <version> [<release name> ...]
+                        | --flashFile <image-file> | --showNames]
+configure_edison: error: unrecognized arguments: --busapp
+root@edison:~# configure_edison --busapp      name
+[H[J[96m
+Configure Edison: Device Name
+[0m
+Give this Edison a unique name.
+This will be used for the access point SSID and mDNS address.
+Make it at least five characters long (leave empty to skip): busapp
+Is [95mbusapp[0m correct? [93m[Y or N][0m: y
+
+root@edison:~# rfkill unvloc    blok clue                  rfkill unblock bluetooth
+root@edison:~# hciconfig hci0 up
+root@edison:~# vi /etc/opkg/base-feeds.conf
+[?1049h[1;1H[J[1;1H~[2;1H~[3;1H~[4;1H~[5;1H~[6;1H~[7;1H~[8;1H~[9;1H~[10;1H~[11;1H~[12;1H~[13;1H~[14;1H~[15;1H~[16;1H~[17;1H~[18;1H~[19;1H~[20;1H~[21;1H~[22;1H~[23;1H~[1;1H[24;1H[K- /etc/opkg/base-feeds.conf 0/0 100%[1;1H[1;1H [1;1H[24;1H[KI /etc/opkg/base-feeds.conf [Modified] 1/1 100%[1;1H[1;1Hr[1;2H[1;2Hc[1;3H[1;3H/[1;4H[1;4Hg[1;5H[1;5Hz[1;6H[1;5H [1;5H[1;4H [1;4H[1;3H [1;3H[1;2H [1;2H[1;1H [1;1H[1;1H[1;1H[1;1Hs[1;2H[1;2Hr[1;3H[1;3Hc[1;4H[1;4H/[1;5H[1;5Hg[1;6H[1;6Hz[1;7H[1;8H[1;8Ha[1;9H[1;9Hl[1;10H[1;10Hl[1;11H[1;12H[1;12Hh[1;13H[1;13Ht[1;14H[1;14Ht[1;15H[1;15Hp[1;16H[1;16H:[1;17H[1;17H/[1;18H[1;18H/[1;19H[1;19Hr[1;20H[1;20He[1;21H[1;21Hp[1;22H[1;22Ho[1;23H[1;23H/[1;24H[1;23H [1;23H[1;23H.[1;24H[1;24Ho[1;25H[1;25Hp[1;26H[1;26Hk[1;27H[1;27Hg[1;28H[1;28H/[1;29H[1;28H [1;28H[1;28H.[1;29H[1;29Hn[1;30H[1;30He[1;31H[1;31Ht[1;32H[1;32H/[1;33H[1;33He[1;34H[1;34Hd[1;35H[1;35Hi[1;36H[1;36Hs[1;37H[1;37Ho[1;38H[1;38Hn[1;39H[1;39H/[1;40H[1;40Hr[1;41H[1;41He[1;42H[1;42Hp[1;43H[1;43Ho[1;44H[1;44H/[1;45H[1;45Ha[1;46H[1;46H;[1;47H[1;47H;[1;48H[1;47H [1;47H[1;46H [1;46H[1;46Hl[1;47H[1;47Hl[1;48H[1;48H[2;1H [2;1H[24;1H[KI /etc/opkg/base-feeds.conf [Modified] 2/2 100%[2;1H[2;1Hs[2;2H[2;2Hr[2;3H[2;3Hc[2;4H[2;4H/[2;5H[2;5Hg[2;6H[2;6Hz[2;7H[2;8H[2;8He[2;9H[2;9Hd[2;10H[2;10Hi[2;11H[2;11Hs[2;12H[2;12Ho[2;13H[2;13Hn[2;14H[2;15H[2;15Hj[2;16H[2;15H [2;15H[2;15Hh[2;16H[2;16Ht[2;17H[2;17Ht[2;18H[2;18Hp[2;19H[2;19H:[2;20H[2;20H/[2;21H[2;21H/[2;22H[2;22Hr[2;23H[2;23He[2;24H[2;24Hp[2;25H[2;25Ho[2;26H[2;26H.[2;27H[2;27Ho[2;28H[2;28Hp[2;29H[2;29Hk[2;30H[2;30Hg[2;31H[2;31H.[2;32H[2;32Hn[2;33H[2;33He[2;34H[2;34Ht[2;35H[2;35H/[2;36H[2;36He[2;37H[2;37Hd[2;38H[2;38Hi[2;39H[2;39Hs[2;40H[2;40Ho[2;41H[2;41Hn[2;42H[2;42H/[2;43H[2;43Hr[2;44H[2;44He[2;45H[2;45Hp[2;46H[2;46Ho[2;47H[2;47H/[2;48H[2;48He[2;49H[2;49Hd[2;50H[2;50Hi[2;51H[2;51Hs[2;52H[2;52Ho[2;53H[2;53Hn[2;54H[3;1H [3;1H[24;1H[KI /etc/opkg/base-feeds.conf [Modified] 3/3 100%[3;1H[3;1Hs[3;2H[3;2Hr[3;3H[3;3Hc[3;4H[3;4H/[3;5H[3;5Hg[3;6H[3;6Hz[3;7H[3;8H[3;8He[3;9H[3;9Hd[3;10H[3;10Hi[3;11H[3;10H [3;10H[3;9H [3;9H[3;8H [3;8H[3;8Hc[3;9H[3;9Ho[3;10H[3;10Hr[3;11H[3;11He[3;12H[3;12H2[3;13H[3;13H-[3;14H[3;14H3[3;15H[3;15H2[3;16H[3;16Hh[3;17H[3;17Ht[3;18H[3;18Ht[3;19H[3;19Hp[3;20H[3;20H:[3;21H[3;21H/[3;22H[3;22H/[3;23H[3;23Hr[3;24H[3;24He[3;25H[3;25Hp[3;26H[3;26Ho[3;27H[3;27H/[3;28H[3;27H [3;27H[3;27H.[3;28H[3;28Ho[3;29H[3;29Hp[3;30H[3;30Hk[3;31H[3;31Hg[3;32H[3;32H.[3;33H[3;33Hn[3;34H[3;34He[3;35H[3;35Ht[3;36H[3;36H/[3;37H[3;37He[3;38H[3;38Hd[3;39H[3;39Hi[3;40H[3;40Hs[3;41H[3;41Ho[3;42H[3;42Hn[3;43H[3;43H/[3;44H[3;44Hr[3;45H[3;45He[3;46H[3;46Hp[3;47H[3;47Ho[3;48H[3;48H/[3;49H[3;49Hc[3;50H[3;50Ho[3;51H[3;51Hr[3;52H[3;52He[3;53H[3;53H2[3;54H[3;54H-[3;55H[3;55H3[3;56H[3;56H2[3;57H[4;1H [4;1H[24;1H[KI /etc/opkg/base-feeds.conf [Modified] 4/4 100%[4;1H[4;1H:[4;2H[4;2Hw[4;3H[4;3Hq[4;4H[5;1H [5;1H[24;1H[KI /etc/opkg/base-feeds.conf [Modified] 5/5 100%[5;1H[5;1H[5;1H[5;1H[5;1H[5;1H[5;1H[4;1H[24;1H[KI /etc/opkg/base-feeds.conf [Modified] 4/5 80%[4;1H[3;1H[24;1H[KI /etc/opkg/base-feeds.conf [Modified] 3/5 60%[3;1H[4;1H[24;1H[KI /etc/opkg/base-feeds.conf [Modified] 4/5 80%[4;1H[4;2H[4;3H[4;4H[4;3H [4;3H[4;2H [4;2H[4;1H [4;1H[4;1H[4;1H[24;1H[K- /etc/opkg/base-feeds.conf [Modified] 4/5 80%[4;1H[4;1H[24;1H[K- /etc/opkg/base-feeds.conf [Modified] 4/5 80%[4;1H[4;1H[24;1H[K- /etc/opkg/base-feeds.conf [Modified] 4/5 80%[4;1H[4;1H[24;1H[K- /etc/opkg/base-feeds.conf [Modified] 4/5 80%[4;1H[4;1H[24;1H[K- /etc/opkg/base-feeds.conf [Modified] 4/5 80%[4;1H[4;1H[24;1H[K- /etc/opkg/base-feeds.conf [Modified] 4/5 80%[4;1H[24;1H[K:wq[4;1H[4;1H[24;1H[K'/etc/opkg/base-feeds.conf' 5L, 161C[4;1H[24;1H[K[?1049lroot@edison:~# rfkill unblock bluetooth
+root@edison:~# killall bluetoothd
+root@edison:~# hci  config hci0 up
+root@edison:~# hciconfig hci0 uproot@edison:~# killall bluetoothdroot@edison:~# rfkill unblock bluetoothroot@edison:~# vi /etc/opkg/base-feeds.confroot@edison:~# [11Phciconfig hci0 uproot@edison:~# rfkill unblock bluetoothroot@edison:~# [1Pconfigure_edison --namebusapproot@edison:~# ifconfig[Kcat /etc/version[8Pifconfigconfigure_edison --busapp[2Pnameroot@edison:~# rfkill unblock bluetoothroot@edison:~# [7Phciconfig hci0 uproot@edison:~# vi /etc/opkg/base-feeds.confroot@edison:~# [4Prfkill unblock bluetoothroot@edison:~# [6Pkillall bluetoothdroot@edison:~# [1Phciconfig hci0 uproot@edison:~# [Kipconfig        ipconfig
+-sh: ipconfig: command not found
+root@edison:~# ifconfig
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+usb0      Link encap:Ethernet  HWaddr 02:00:86:5d:1d:89  
+          inet addr:192.168.2.15  Bcast:192.168.2.255  Mask:255.255.255.0
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+root@edison:~# ifconfigpconfighciconfig hci0 uproot@edison:~# killall bluetoothdroot@edison:~# rfkill unblock bluetoothroot@edison:~# vi /etc/opkg/base-feeds.confroot@edison:~# [11Phciconfig hci0 uproot@edison:~# vi /etc/opkg/base-feeds.confroot@edison:~# [4Prfkill unblock bluetoothroot@edison:~# [6Pkillall bluetoothdroot@edison:~# [1Phciconfig hci0 uproot@edison:~# [9Pipconfigfconfig[Kconfg ig_edison       ure_edison--   --wifi
+[H[J[96m
+Configure Edison: WiFi Connection
+[0m
+Starting scanScanning: 10 seconds left Scanning: 9 seconds left Scanning: 8 seconds left Scanning: 7 seconds left Scanning: 6 seconds left Scanning: 5 seconds left Scanning: 4 seconds left Scanning: 3 seconds left Scanning: 2 seconds left Scanning: 1 seconds left 
+
+0 :	Rescan for networks
+1 :	Exit WiFi Setup
+2 :	Manually input a hidden SSID
+3 :	xfinitywifi
+4 :	ESP_0C0DA3
+5 :	ESP_C6E266
+6 :	ESP_248702
+7 :	ESP_248CC2
+8 :	XFINITY
+9 :	Simple Guest
+10 :	Simple
+11 :	CP910-A4C04B
+12 :	TP-LINK_F0B216
+
+
+Enter 0 to rescan for networks.
+Enter 1 to exit.
+Enter 2 to input a hidden network SSID.
+Enter a number between 3 to 12 to choose one of the listed network SSIDs: 9
+Is [95mSimple Guest[0m correct? [93m[Y or N][0m: y
+Password must be between 8 and 63 characters.
+What is the network password?: ***************************
+Initiating connection to Simple Guest. Please wait...
+Attempting to enable network access, please check 'wpa_cli status' after a minute to confirm.
+Connecting: 60 seconds left         Done. Please connect your laptop or PC to the same network as this device and go to [96mhttp://10.232.200.227[0m or [96mhttp://busapp.local[0m in your browser.
+Warning: SSH is not yet enabled on the wireless interface. To enable SSH access to this device via wireless run configure_edison --password first.
+root@edison:~# configure_edison --password
+[H[J[96m
+Configure Edison: Device Password
+[0m
+Enter a new password (leave empty to abort)
+This will be used to connect to the access point and login to the device.
+Password: 	********
+Please enter the password again: 	********
+First-time root password setup complete. Enabling SSH on WiFi interface.
+The device password has been changed.
+
+root@edison:~# configure_edison --password[4Pwifi
+[H[J[96m
+Configure Edison: WiFi Connection
+[0m
+Starting scanScanning: 10 seconds left Scanning: 9 seconds left Scanning: 8 seconds left Scanning: 7 seconds left Scanning: 6 seconds left Scanning: 5 seconds left Scanning: 4 seconds left Scanning: 3 seconds left Scanning: 2 seconds left Scanning: 1 seconds left 
+
+0 :	Rescan for networks
+1 :	Exit WiFi Setup
+2 :	Manually input a hidden SSID
+3 :	xfinitywifi
+4 :	ESP_0C0DA3
+5 :	ESP_248CC2
+6 :	ESP_C6E266
+7 :	ESP_248702
+8 :	AMPCnC
+9 :	XFINITY
+10 :	Simple Guest
+11 :	Simple
+12 :	CP910-A4C04B
+13 :	TP-LINK_F0B216
+
+
+Enter 0 to rescan for networks.
+Enter 1 to exit.
+Enter 2 to input a hidden network SSID.
+Enter a number between 3 to 13 to choose one of the listed network SSIDs: 10
+Is [95mSimple Guest[0m correct? [93m[Y or N][0m: y
+Password must be between 8 and 63 characters.
+What is the network password?: ***************************
+Initiating connection to Simple Guest. Please wait...
+Attempting to enable network access, please check 'wpa_cli status' after a minute to confirm.
+Connecting: 60 seconds left         Done. Please connect your laptop or PC to the same network as this device and go to [96mhttp://10.232.200.227[0m or [96mhttp://busapp.local[0m in your browser.
+root@edison:~# pwa  _wpa       ap  wpa_cli status
+Selected interface 'wlan0'
+bssid=38:ff:36:11:1a:78
+ssid=Simple Guest
+id=1
+mode=station
+pairwise_cipher=CCMP
+group_cipher=CCMP
+key_mgmt=WPA2-PSK
+wpa_state=COMPLETED
+ip_address=10.232.200.227
+p2p_device_address=92:b6:86:0a:1f:e2
+address=90:b6:86:0a:1f:e2
+root@edison:~# npm install           cd /node_app_slot
+root@edison:/node_app_slot# nom     npm install bleno
+[37m[40mnpm[0m [0m[30m[43mWARN[0m [0m[35mpackage.json[0m blePeripheralapp@0.0.0 No repository field.
+[0m[37m[40mnpm[0m [0m[30m[43mWARN[0m [0m[35mpackage.json[0m util@0.10.3 util is also the name of a node core module.
+[0m-[0G\[0G|[0G/[0G-[0G\[0G|[0G/[0G-[0G\[0G|[0G/[0G-[0G\[0G|[0G/[0G-[0G\[0G|[0G[37m[40mnpm[0m [0m[30m[43mWARN[0m [0m[35moptional dep failed, continuing[0m xpc-connection@0.1.4
+[0m-[0G\[0G|[0G/[0G-[0G\[0G|[0G/[0G-[0G\[0G|[0G/[0G-[0G\[0G|[0G/[0G-[0G\[0G|[0G/[0G-[0G\[0G|[0G/[0G-[0G\[0G|[0G/[0G-[0G\[0G|[0G[37m[40mnpm[0m [0m[30m[43mWARN[0m [0m[35mengine[0m usb@1.2.0: wanted: {"node":">=0.12.x"} (current: {"node":"0.10.38","npm":"1.4.28"})
+[0m
+> usb@1.2.0 install /home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/node_modules/usb
+> node-pre-gyp install --fallback-to-build
+
+[37;40mnode-pre-gyp[0m [0m[31;40mERR![0m [0m[35mTried to download: https://github.com/tessel/node-usb/releases/download/1.2.0/usb_bindings-v1.2.0-node-v11-linux-ia32.tar.gz[0m 
+[0m[37;40mnode-pre-gyp[0m [0m[31;40mERR![0m [0m[35mPre-built binaries not found for usb@1.2.0 and node@0.10.38 (node-v11 ABI) (falling back to source compile with node-gyp)[0m 
+[0mmake: Entering directory '/home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/node_modules/usb/build'
+  CC(target) Release/obj.target/libusb/libusb/libusb/core.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/descriptor.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/hotplug.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/io.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/strerror.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/sync.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/os/poll_posix.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/os/threads_posix.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/os/linux_usbfs.o
+  CC(target) Release/obj.target/libusb/libusb/libusb/os/linux_udev.o
+../libusb/libusb/os/linux_udev.c:40:21: fatal error: libudev.h: No such file or directory
+ #include <libudev.h>
+                     ^
+compilation terminated.
+libusb.target.mk:121: recipe for target 'Release/obj.target/libusb/libusb/libusb/os/linux_udev.o' failed
+make: *** [Release/obj.target/libusb/libusb/libusb/os/linux_udev.o] Error 1
+make: Leaving directory '/home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/node_modules/usb/build'
+[37m[40mgyp[0m [0m[31m[40mERR![0m [0m[35mbuild error[0m 
+[0m[37m[40mgyp[0m [0m[31m[40mERR![0m [0m[35mstack[0m Error: `make` failed with exit code: 2
+[0m[37m[40mgyp[0m [0m[31m[40mERR![0m [0m[35mstack[0m     at ChildProcess.onExit (/usr/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:267:23)
+[0m[37m[40mgyp[0m [0m[31m[40mERR![0m [0m[35mstack[0m     at ChildProcess.emit (events.js:98:17)
+[0m[37m[40mgyp[0m [0m[31m[40mERR![0m [0m[35mstack[0m     at Process.ChildProcess._handle.onexit (child_process.js:820:12)
+[0m[37m[40mgyp[0m [0m[31m[40mERR![0m [0m[35mSystem[0m Linux 3.10.17-poky-edison+
+[0m[37m[40mgyp[0m [0m[31m[40mERR![0m [0m[35mcommand[0m "/usr/bin/node" "/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js" "build" "--fallback-to-build" "--module=/home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/node_modules/usb/src/binding/usb_bindings.node" "--module_name=usb_bindings" "--module_path=/home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/node_modules/usb/src/binding"
+[0m[37m[40mgyp[0m [0m[31m[40mERR![0m [0m[35mcwd[0m /home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/node_modules/usb
+[0m[37m[40mgyp[0m [0m[31m[40mERR![0m [0m[35mnode -v[0m v0.10.38
+[0m[37m[40mgyp[0m [0m[31m[40mERR![0m [0m[35mnode-gyp -v[0m v1.0.1
+[0m[37m[40mgyp[0m [0m[31m[40mERR![0m [0m[35mnot ok[0m 
+[0m[37;40mnode-pre-gyp[0m [0m[31;40mERR![0m [0m[35mbuild error[0m 
+[0m[37;40mnode-pre-gyp[0m [0m[31;40mERR![0m [0m[35mstack[0m Error: Failed to execute '/usr/bin/node /usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js build --fallback-to-build --module=/home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/node_modules/usb/src/binding/usb_bindings.node --module_name=usb_bindings --module_path=/home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/node_modules/usb/src/binding' (1)
+[0m[37;40mnode-pre-gyp[0m [0m[31;40mERR![0m [0m[35mstack[0m     at ChildProcess.<anonymous> (/home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/node_modules/usb/node_modules/node-pre-gyp/lib/util/compile.js:83:29)
+[0m[37;40mnode-pre-gyp[0m [0m[31;40mERR![0m [0m[35mstack[0m     at ChildProcess.emit (events.js:98:17)
+[0m[37;40mnode-pre-gyp[0m [0m[31;40mERR![0m [0m[35mstack[0m     at maybeClose (child_process.js:766:16)
+[0m[37;40mnode-pre-gyp[0m [0m[31;40mERR![0m [0m[35mstack[0m     at Process.ChildProcess._handle.onexit (child_process.js:833:5)
+[0m[37;40mnode-pre-gyp[0m [0m[31;40mERR![0m [0m[35mSystem[0m Linux 3.10.17-poky-edison+
+[0m[37;40mnode-pre-gyp[0m [0m[31;40mERR![0m [0m[35mcommand[0m "node" "/home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/node_modules/usb/node_modules/.bin/node-pre-gyp" "install" "--fallback-to-build"
+[0m[37;40mnode-pre-gyp[0m [0m[31;40mERR![0m [0m[35mcwd[0m /home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/node_modules/usb
+[0m[37;40mnode-pre-gyp[0m [0m[31;40mERR![0m [0m[35mnode -v[0m v0.10.38
+[0m[37;40mnode-pre-gyp[0m [0m[31;40mERR![0m [0m[35mnode-pre-gyp -v[0m v0.6.30
+[0m[37;40mnode-pre-gyp[0m [0m[31;40mERR![0m [0m[35mnot ok[0m 
+[0mFailed to execute '/usr/bin/node /usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js build --fallback-to-build --module=/home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/node_modules/usb/src/binding/usb_bindings.node --module_name=usb_bindings --module_path=/home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/node_modules/usb/src/binding' (1)
+[37m[40mnpm[0m [0m[30m[43mWARN[0m [0m[35moptional dep failed, continuing[0m usb@1.2.0
+[0m
+> bluetooth-hci-socket@0.5.1 install /home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket
+> node-gyp rebuild
+
+make: Entering directory '/home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/build'
+  CXX(target) Release/obj.target/binding/src/BluetoothHciSocket.o
+  SOLINK_MODULE(target) Release/obj.target/binding.node
+  SOLINK_MODULE(target) Release/obj.target/binding.node: Finished
+  COPY Release/binding.node
+make: Leaving directory '/home/root/.node_app_slot/node_modules/bleno/node_modules/bluetooth-hci-socket/build'
+bleno@0.4.1 node_modules/bleno
+├── bplist-parser@0.0.6
+├── debug@2.3.3 (ms@0.7.2)
+└── bluetooth-hci-socket@0.5.1 (nan@2.4.0)
+[2Kroot@edison:/node_app_slot# 
