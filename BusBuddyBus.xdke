@@ -17,8 +17,8 @@
         "name": "BusBuddyBus.xdk"
       },
       "BusBuddyBus.xdke": {
-        "previousModTime": 1480844099134,
-        "modified": 1480844099134,
+        "previousModTime": 1480847423429,
+        "modified": 1480847423429,
         "seen": true,
         "name": "BusBuddyBus.xdke"
       },
@@ -35,8 +35,8 @@
         "name": "icon.png"
       },
       "main.js": {
-        "previousModTime": 1480845249686,
-        "modified": 1480845249686,
+        "previousModTime": 1480848003065,
+        "modified": 1480848003065,
         "seen": true,
         "name": "main.js"
       },
@@ -57,11 +57,17 @@
         "modified": 1480803779031,
         "seen": true,
         "name": "xdk/project-info.json"
+      },
+      ".gitignore": {
+        "previousModTime": 1480846296125,
+        "modified": 1480846296125,
+        "seen": true,
+        "name": ".gitignore"
       }
     },
     "boardFileStatus": {
       "main.js": {
-        "previousModTime": 1480845394264
+        "previousModTime": 1480848016084
       }
     }
   }
