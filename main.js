@@ -30,6 +30,10 @@ Cylon.robot(
         driver: 'button',
         pin: 6,
         connection: 'edison'
+      },
+      screen: {
+        driver: 'jhd1313m1',
+        connection: 'edison'
       }
     },
 
@@ -43,6 +47,8 @@ Cylon.robot(
       my.button.on('push', function() {
         console.log("Button pushed!");
       });
+      my.screen.setCursor(0,0);
+      my.screen.write("Hello World!");
+      }
     }
-  }
-).start();
+  ).start();
