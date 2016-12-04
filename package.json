@@ -1,5 +1,5 @@
 {
-  "name": "blePeripheralapp",
+  "name": "busApp",
   "description": "",
   "version": "0.0.0",
   "main": "main.js",
@@ -7,9 +7,10 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-      "async": "latest",
-      "noble": "latest",
-      "bleno": "latest",
-      "util": "latest"
+    "cylon": "^1.3.0",
+    "cylon-firmata": "^0.24.0",
+    "cylon-gpio": "^0.30.1",
+    "cylon-i2c": "^0.26.1",
+    "cylon-intel-iot": "^0.13.3"
   }
 }

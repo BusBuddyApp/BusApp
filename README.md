@@ -1,9 +1,11 @@
-BLE - Peripheral Node.js IoT App
+Bus Buddy
 ============================
-A simple nodeJS project that uses the bleno node module on Intel IoT platforms to advertise it's presence, read and write data via it's service and corresponding characteristic for Bluetooth Low Energy (BLE) communication.
+BusBuddy is a nodeJS application running on an Intel Edison platform that uses 3 different colored LEDs, an LCD screen, a button, and a buzzer and Bluetooth Low Energy (BLE) to create a simple way of notifying passengers on a bus the optimal window for pulling the cord indicating they would like to exit at the next stop. Bus stations will be equipped with BLE beacons so that when a bus drives past or stops at a station the LED will change color, the LCD will automatically update, and a buzzer will sound to get passengers attention. If a passenger knows that they are a certain number of stops away they can predict which color will light up for their stop if reading the screen or unable to read street signs. If a bus has to reroute or a technical failure prevents automatic updates, the bus driver may press a button that triggers the same actions.
+
+In the future a mobile application will be available so a passenger can see the full route and select their stop. They will receive notifications and vibrations when their stop is approaching. This application will not rely on cellular data but rather be activated by pairing with the bus computer over bluetooth.
 
 ###Intel(R) Edison
-In order to leverage this project successfully, you will need to enable bluetooth and disable the bluetooth daemon on Intel(R) Edison. 
+In order to leverage this project successfully, you will need to enable bluetooth and disable the bluetooth daemon on Intel(R) Edison.
 
 ###Intel(R) Galileo
 In order to leverage this project successfully, you will need to use a compatible BLE product such as the [Grove - BLE](http://www.seeedstudio.com/depot/Grove-BLE-p-1929.html)
@@ -13,18 +15,18 @@ In order to leverage this project successfully, you will need to use a compatibl
 ####First time - Enabling BLE
 Within a SSH or Serial Terminal connection, type the following commands,
 ```
-rfkill unblock bluetooth 
+rfkill unblock bluetooth
 hciconfig hci0 up
 
-vi /etc/opkg/base-feeds.conf (insert only following lines) 
-src/gz all http://repo.opkg.net/edison/repo/all 
-src/gz edison http://repo.opkg.net/edison/repo/edison 
+vi /etc/opkg/base-feeds.conf (insert only following lines)
+src/gz all http://repo.opkg.net/edison/repo/all
+src/gz edison http://repo.opkg.net/edison/repo/edison
 src/gz core2-32 http://repo.opkg.net/edison/repo/core2-32
 ```
 *For more information on the vi editor, visit* http://www.cs.colostate.edu/helpdocs/vi.html
 
 ```
-opkg update 
+opkg update
 opkg install bluez5-dev
 ```
 
@@ -34,9 +36,9 @@ opkg install bluez5-dev
 **Note:** The following steps will need to be executed every time the board is restarted.
 Within a SSH or Serial Terminal connection, type the following commands,
 ```
-rfkill unblock bluetooth 
-killall bluetoothd (or, more permanently) systemctl disable bluetooth 
-hciconfig hci0 up 
+rfkill unblock bluetooth
+killall bluetoothd (or, more permanently) systemctl disable bluetooth
+hciconfig hci0 up
 ```
 
 You should now be able to use BLE in your project.
@@ -49,9 +51,198 @@ Within the "manage your xdk daemon and IoT device" menu, check the following box
 You can installed the required node modules for this project which are found in the package.json file by pressing the Build/Install button.
 
 ####(Intel XDK IoT Edition) Upload & Run project
-After installing the neccessary node modules, press the upload and run buttons to execute your project on your board. 
+After installing the neccessary node modules, press the upload and run buttons to execute your project on your board.
 
 **Mobile Companion App** BLE-Central - https://github.com/gomobile/sample-ble-central
+*  The mobile companion app, BLE-Central is under Statrt A New Project > HTML5 Companion Hybrid Mobile or Web App > Samples and Demos > General > HTML5 + Cordova section.
+
+####Getting Started with Bleno Cordova* Plug-in
+#####Design Considerations
+The **first operation** is to set up an eventlistener for the "stateChange" event. Within this function block, it is recommended to startAdvertising your service only when the state is in powerOn.
+```javascript
+bleno.on('stateChange', function(state) {
+  console.log('on -> stateChange: ' + state);
+
+  if (state === 'poweredOn') {
+    bleno.startAdvertising('feedback', ['fc00']);
+  } else {A simple nodeJS project that uses the bleno node module on Intel IoT platforms to advertise it's presence, read and write data via it's service and corresponding characteristic for Bluetooth Low Energy (BLE) communication.
+
+###Intel(R) Edison
+In order to leverage this project successfully, you will need to enable bluetooth and disable the bluetooth daemon on Intel(R) Edison.
+
+###Intel(R) Galileo
+In order to leverage this project successfully, you will need to use a compatible BLE product such as the [Grove - BLE](http://www.seeedstudio.com/depot/Grove-BLE-p-1929.html)
+
+
+###Intel(R) Edison & Intel(R) Galileo
+####First time - Enabling BLE
+Within a SSH or Serial Terminal connection, type the following commands,
+```
+rfkill unblock bluetooth
+hciconfig hci0 up
+
+vi /etc/opkg/base-feeds.conf (insert only following lines)
+src/gz all http://repo.opkg.net/edison/repo/all
+src/gz edison http://repo.opkg.net/edison/repo/edison
+src/gz core2-32 http://repo.opkg.net/edison/repo/core2-32
+```
+*For more information on the vi editor, visit* http://www.cs.colostate.edu/helpdocs/vi.html
+
+```
+opkg update
+opkg install bluez5-dev
+```
+
+**Note:** If bluez fails to install this version, still proceed with remainding steps.
+
+####Prerequisite for Bleno - node package to work successfully
+**Note:** The following steps will need to be executed every time the board is restarted.
+Within a SSH or Serial Terminal connection, type the following commands,
+```
+rfkill unblock bluetooth
+killall bluetoothd (or, more permanently) systemctl disable bluetooth
+hciconfig hci0 up
+```
+
+You should now be able to use BLE in your project.
+
+####(Intel XDK IoT Edition) Install node modules
+Within the "manage your xdk daemon and IoT device" menu, check the following boxes
+* Clean '/node_modules' before building
+* Run npm install directly on IoT Device (requires internet connection on device)
+
+You can installed the required node modules for this project which are found in the package.json file by pressing the Build/Install button.
+
+####(Intel XDK IoT Edition) Upload & Run project
+After installing the neccessary node modules, press the upload and run buttons to execute your project on your board.
+
+**Mobile Companion App** BLE-Central - https://github.com/gomobile/sample-ble-central
+*  The mobile companion app, BLE-Central is under Statrt A New Project > HTML5 Companion Hybrid Mobile or Web App > Samples and Demos > General > HTML5 + Cordova section.
+
+####Getting Started with Bleno Cordova* Plug-in
+#####Design Considerations
+The **first operation** is to set up an eventlistener for the "stateChange" event. Within this function block, it is recommended to startAdvertising your service only when the state is in powerOn.
+```javascript
+bleno.on('stateChange', function(state) {
+  console.log('on -> stateChange: ' + state);
+
+  if (state === 'poweredOn') {
+    bleno.startAdvertising('feedback', ['fc00']);
+  } else {A simple nodeJS project that uses the bleno node module on Intel IoT platforms to advertise it's presence, read and write data via it's service and corresponding characteristic for Bluetooth Low Energy (BLE) communication.
+
+###Intel(R) Edison
+In order to leverage this project successfully, you will need to enable bluetooth and disable the bluetooth daemon on Intel(R) Edison.
+
+###Intel(R) Galileo
+In order to leverage this project successfully, you will need to use a compatible BLE product such as the [Grove - BLE](http://www.seeedstudio.com/depot/Grove-BLE-p-1929.html)
+
+
+###Intel(R) Edison & Intel(R) Galileo
+####First time - Enabling BLE
+Within a SSH or Serial Terminal connection, type the following commands,
+```
+rfkill unblock bluetooth
+hciconfig hci0 up
+
+vi /etc/opkg/base-feeds.conf (insert only following lines)
+src/gz all http://repo.opkg.net/edison/repo/all
+src/gz edison http://repo.opkg.net/edison/repo/edison
+src/gz core2-32 http://repo.opkg.net/edison/repo/core2-32
+```
+*For more information on the vi editor, visit* http://www.cs.colostate.edu/helpdocs/vi.html
+
+```
+opkg update
+opkg install bluez5-dev
+```
+
+**Note:** If bluez fails to install this version, still proceed with remainding steps.
+
+####Prerequisite for Bleno - node package to work successfully
+**Note:** The following steps will need to be executed every time the board is restarted.
+Within a SSH or Serial Terminal connection, type the following commands,
+```
+rfkill unblock bluetooth
+killall bluetoothd (or, more permanently) systemctl disable bluetooth
+hciconfig hci0 up
+```
+
+You should now be able to use BLE in your project.
+
+####(Intel XDK IoT Edition) Install node modules
+Within the "manage your xdk daemon and IoT device" menu, check the following boxes
+* Clean '/node_modules' before building
+* Run npm install directly on IoT Device (requires internet connection on device)
+
+You can installed the required node modules for this project which are found in the package.json file by pressing the Build/Install button.
+
+####(Intel XDK IoT Edition) Upload & Run project
+After installing the neccessary node modules, press the upload and run buttons to execute your project on your board.
+
+**Mobile Companion App** BLE-Central -A simple nodeJS project that uses the bleno node module on Intel IoT platforms to advertise it's presence, read and write data via it's service and corresponding characteristic for Bluetooth Low Energy (BLE) communication.
+
+###Intel(R) Edison
+In order to leverage this project successfully, you will need to enable bluetooth and disable the bluetooth daemon on Intel(R) Edison.
+
+###Intel(R) Galileo
+In order to leverage this project successfully, you will need to use a compatible BLE product such as the [Grove - BLE](http://www.seeedstudio.com/depot/Grove-BLE-p-1929.html)
+
+
+###Intel(R) Edison & Intel(R) Galileo
+####First time - Enabling BLE
+Within a SSH or Serial Terminal connection, type the following commands,
+```
+rfkill unblock bluetooth
+hciconfig hci0 up
+
+vi /etc/opkg/base-feeds.conf (insert only following lines)
+src/gz all http://repo.opkg.net/edison/repo/all
+src/gz edison http://repo.opkg.net/edison/repo/edison
+src/gz core2-32 http://repo.opkg.net/edison/repo/core2-32
+```
+*For more information on the vi editor, visit* http://www.cs.colostate.edu/helpdocs/vi.html
+
+```
+opkg update
+opkg install bluez5-dev
+```
+
+**Note:** If bluez fails to install this version, still proceed with remainding steps.
+
+####Prerequisite for Bleno - node package to work successfully
+**Note:** The following steps will need to be executed every time the board is restarted.
+Within a SSH or Serial Terminal connection, type the following commands,
+```
+rfkill unblock bluetooth
+killall bluetoothd (or, more permanently) systemctl disable bluetooth
+hciconfig hci0 up
+```
+
+You should now be able to use BLE in your project.
+
+####(Intel XDK IoT Edition) Install node modules
+Within the "manage your xdk daemon and IoT device" menu, check the following boxes
+* Clean '/node_modules' before building
+* Run npm install directly on IoT Device (requires internet connection on device)
+
+You can installed the required node modules for this project which are found in the package.json file by pressing the Build/Install button.
+
+####(Intel XDK IoT Edition) Upload & Run project
+After installing the neccessary node modules, press the upload and run buttons to execute your project on your board.
+
+**Mobile Companion App** BLE-Central - https://github.com/gomobile/sample-ble-central
+*  The mobile companion app, BLE-Central is under Statrt A New Project > HTML5 Companion Hybrid Mobile or Web App > Samples and Demos > General > HTML5 + Cordova section.
+
+####Getting Started with Bleno Cordova* Plug-in
+#####Design Considerations
+The **first operation** is to set up an eventlistener for the "stateChange" event. Within this function block, it is recommended to startAdvertising your service only when the state is in powerOn.
+```javascript
+bleno.on('stateChange', function(state) {
+  console.log('on -> stateChange: ' + state);
+
+  if (state === 'poweredOn') {
+    bleno.startAdvertising('feedback', ['fc00']);
+  } else { https://github.com/gomobile/sample-ble-central
 *  The mobile companion app, BLE-Central is under Statrt A New Project > HTML5 Companion Hybrid Mobile or Web App > Samples and Demos > General > HTML5 + Cordova section.
 
 ####Getting Started with Bleno Cordova* Plug-in
@@ -97,12 +288,12 @@ var FirstCharacteristic = function() {
 
   this._value = new Buffer("Hello World from Edison!", "utf-8");
   console.log("Characterisitic's value: "+this._value);
-    
+
   this._updateValueCallback = null;
 };
 ```
 
-**Communication request handlers for the BLE peripheral can be managed by the following functions:** 
+**Communication request handlers for the BLE peripheral can be managed by the following functions:**
 ```javascript
 FirstCharacteristic.prototype.onReadRequest = function(offset, callback) {
   console.log('FirstCharacteristic - onReadRequest: value = ' + this._value.toString("utf-8"));
@@ -151,15 +342,15 @@ bleno.on('disconnect', function(clientAddress) {
 
 Intel(R) XDK IoT Edition
 -------------------------------------------
-This template is part of the Intel(R) XDK IoT Edition. 
-Download the Intel(R) XDK IoT Edition at https://software.intel.com/en-us/html5/xdk-iot. To see the technical details of the sample, 
+This template is part of the Intel(R) XDK IoT Edition.
+Download the Intel(R) XDK IoT Edition at https://software.intel.com/en-us/html5/xdk-iot. To see the technical details of the sample,
 please visit the sample article page at https://software.intel.com/en-us/creating-a-bluetooth-low-energy-app/.
 
 
 Important App Files
 ---------------------------
 * main.js
-* characteristic.js 
+* characteristic.js
 * package.json
 * icon.png
 * README.md
@@ -168,29 +359,29 @@ License Information Follows
 ---------------------------
 Copyright (c) 2015, Intel Corporation. All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification, 
+Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-- Redistributions of source code must retain the above copyright notice, 
+- Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
 
-- Redistributions in binary form must reproduce the above copyright notice, 
-  this list of conditions and the following disclaimer in the documentation 
+- Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
 
-- Neither the name of Intel Corporation nor the names of its contributors 
-  may be used to endorse or promote products derived from this software 
+- Neither the name of Intel Corporation nor the names of its contributors
+  may be used to endorse or promote products derived from this software
   without specific prior written permission.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
-THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
-GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
-HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
-LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 async
