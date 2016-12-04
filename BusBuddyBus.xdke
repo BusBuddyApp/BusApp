@@ -17,8 +17,8 @@
         "name": "BusBuddyBus.xdk"
       },
       "BusBuddyBus.xdke": {
-        "previousModTime": 1480852062113,
-        "modified": 1480852062113,
+        "previousModTime": 1480882280575,
+        "modified": 1480882280575,
         "seen": true,
         "name": "BusBuddyBus.xdke"
       },
@@ -35,8 +35,8 @@
         "name": "icon.png"
       },
       "main.js": {
-        "previousModTime": 1480852088429,
-        "modified": 1480852088429,
+        "previousModTime": 1480882397719,
+        "modified": 1480882397719,
         "seen": true,
         "name": "main.js"
       },
@@ -69,11 +69,23 @@
         "modified": 1480850067729,
         "seen": true,
         "name": "npm-debug.log"
+      },
+      "busRoute.js": {
+        "previousModTime": 1480872624266,
+        "modified": 1480872624266,
+        "seen": true,
+        "name": "busRoute.js"
+      },
+      "www/index.html": {
+        "previousModTime": 1480872483270,
+        "modified": 1480872483270,
+        "seen": true,
+        "name": "www/index.html"
       }
     },
     "boardFileStatus": {
       "main.js": {
-        "previousModTime": 1480852096394
+        "previousModTime": 1480882406952
       }
     }
   }
